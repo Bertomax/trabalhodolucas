@@ -1,0 +1,30 @@
+public class Configuracao {
+    private static Configuracao instanciaUnica;
+    private Properties propriedades;
+
+    // Construtor privado para evitar instanciamento externo
+    private Configuracao() {
+        propriedades = new Properties();
+        carregarConfiguracoes();
+    }
+
+    // Método estático para obter a instância única
+    public static Configuracao getInstance() {
+        if (instanciaUnica == null) {
+            instanciaUnica = new Configuracao();
+        }
+        return instanciaUnica;
+    }
+
+    private void carregarConfiguracoes() {
+        // Lógica para carregar configurações do arquivo
+        propriedades.setProperty("urlBancoDados", "jdbc:mysql://localhost:3306/db");
+        propriedades.setProperty("usuario", "admin");
+        propriedades.setProperty("senha", "senha123");
+        // Mais configurações...
+    }
+
+    public String getPropriedade(String chave) {
+        return propriedades.getProperty(chave);
+    }
+}
